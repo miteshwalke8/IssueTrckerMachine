@@ -1,0 +1,17 @@
+<ng-template #onlineNotificationTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Notification</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>{{onlineNotificationData.message}}</div>
+        <div>Click below button to open the description issue ID-{{onlineNotificationData.issueNumber}}</div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" (click)="openIssueDescription()">Open
+            desctiption</button>
+        <button class="btn btn-primary" (click)="closeModal()">Close</button>
+    </div>
+</ng-template>

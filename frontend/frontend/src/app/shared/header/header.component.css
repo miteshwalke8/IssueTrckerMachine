@@ -1,0 +1,52 @@
+.app-header{
+    z-index: 2;
+    font-size: 20px;
+    background-color: #5f5f5f;
+    color: #f1f1f1;
+    width: 100%;
+    letter-spacing: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    height: 40px;
+    font-weight: 700;
+    line-height: 40px;
+  }
+
+.app-title{
+    padding-left: 40px;
+}
+
+.app-user-name{
+    text-align: right;
+}
+
+.app-logout{
+    padding-right: 50px;
+    text-align: right;
+    cursor: pointer;
+    /* i{
+        color: tomato;
+    } */
+}
+
+@media only screen and (max-width: 768px){
+    .app-header{
+        font-size: 14px;
+    }
+    .app-title{
+        padding-left: 25px;
+    }
+    .app-logout{
+        padding-right: 30px;
+    }
+}
+@media only screen and (max-width: 375px){
+    .app-header{
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 1023px){
+    .logout-text{
+        display: none;
+    }
+}

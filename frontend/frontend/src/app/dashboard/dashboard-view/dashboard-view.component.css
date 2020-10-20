@@ -1,0 +1,131 @@
+/* .btn-primary{
+    width: 100% !important;
+}
+
+@media screen and (max-width:991px) {
+    .at-search{
+        margin-bottom: 20px;
+    }
+}
+
+.list-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+  
+ .list-filter{
+    margin-bottom: 30px;
+    .at-search{
+        .seacrh-box {
+            min-height: 38px;
+            line-height: 38px;
+            padding-left: 10px;
+          }
+        .fa-search{
+          position: absolute;
+          right: 22px;
+          font-size: 25px;
+          top: 6px;
+          opacity: 0.3;
+          color: #007bff;
+        }
+        .mat-elevation-z8{
+          border-radius: .25rem;
+        }
+      }
+ }
+
+ .fa-external-link-square{
+   color: #007bff;
+ }
+ .notification-body{
+   cursor: pointer;
+   
+   div:hover{
+    background-color: #cccccc;
+   }
+   .dateTime{
+     color: #007bff;
+   }
+ }
+
+ .at-disabled{
+  cursor: not-allowed;
+   button{
+     pointer-events: none;
+   }
+ }
+
+
+// ----- mat-table styling
+.mat-header-row{
+  background-color: #f7f7f7;
+  .mat-sort-header-arrow {
+      opacity: 0.5 !important;
+  }
+  
+  .mat-sort-header-sorted .mat-sort-header-arrow{
+      opacity: 1 !important;
+      color: #222 !important;
+  }
+  .mat-header-cell{
+      font-size: 14px !important;
+      font-weight: 700 !important;
+  }
+  .mat-column-view{
+      max-width: 60px;
+  }
+}
+
+.mat-row{
+  cursor: pointer;
+  &:hover{
+      border: 1px solid #bbb;
+      background-color: #f5f5f5;
+  }
+  .mat-column-view{
+      max-width: 60px;
+      font-size: 18px;
+      position: relative;
+      left: 8px;
+  }
+}
+
+.mat-table{
+  overflow: hidden !important;
+}
+
+.mat-column-issueNumber,
+.mat-column-createdDate{
+    max-width: 100px;
+}
+
+.mat-column-status,
+.mat-column-reporter,
+.mat-column-assignee{
+    max-width: 130px;
+}
+
+// responsive styling
+@media screen and (max-width: 992px){
+  .mat-column-view,
+  .mat-column-createdDate{
+    display: none;
+  }
+}
+@media screen and (max-width: 768px){
+  .mat-column-reporter{
+    display: none;
+  }
+} */

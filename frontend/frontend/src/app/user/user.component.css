@@ -1,0 +1,19 @@
+.container{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.forgotPassword{
+    text-align: right;
+    cursor: pointer;
+    color: #005cbf;
+    text-decoration: underline;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+@media only screen and (max-width: 575px){
+    .signup, .login{
+        margin: 20px auto;
+        width: 90%;
+    }
+}

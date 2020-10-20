@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-12">
+        <form [formGroup]="issueFormGroup" (ngSubmit)="saveIssue(true)" method="post">
+            <div class="row mb-20">
+                <div class="col-2"><label class="form-label mt-7">Title:</label> </div>
+                <div class="col-10">
+                    <input class="form-control" placeholder="Title" formControlName="title" name="title">
+                </div>
+            </div>
+            <div class="row mb-20">
+                <div class="col-12 col-lg-2"><label class="form-label">Description:</label> </div>
+                <div class="col-12 col-lg-10">
+                    <textarea formControlName="description"></textarea>
+                </div>
+            </div>
+            <div class="row mb-20">
+                <div class="col-3 col-lg-2"><label class="form-label mt-15">Type:</label> </div>
+                <div class="col-9 col-lg-4">
+                    <!-- <mat-form-field> -->
+                        <label>Select</label>
+                        <!-- <mat-select formControlName="issueType">
+                            <mat-option *ngFor="let type of issueTypes" value="{{type}}">{{type}}</mat-option>
+                        </mat-select> -->
+                        <select>
+                        <option  *ngFor="let type of issueTypes" value="{{type}}">{{type}}</option>
+                    </select>
+                    <!-- </mat-form-field> -->
+                    <!-- <label formControlName="issueType">Select</label> -->
+
+                    
+                </div>
+
+                <div class="col-3 col-lg-2"><label class="form-label mt-15">Status:</label> </div>
+                <div class="col-9 col-lg-4">
+                    <!-- <mat-form-field> -->
+                        <select formControlName="status">
+                            <!-- <select> -->
+                                <option  *ngFor="let status of statusList" value="{{status}}">{{status}}</option>
+                        </select>
+                            <!-- <mat-option *ngFor="let status of statusList" value="{{status}}">{{status}}</mat-option> -->
+                        <!-- </mat-select> -->
+                    <!-- </mat-form-field> -->
+                </div>
+                <div class="col-3 col-lg-2"><label class="form-label mt-15">Priority:</label> </div>
+                <div class="col-9 col-lg-4">
+                    <!-- <mat-form-field> -->
+                    <!-- </select> -->
+                        <select formControlName="priority">
+                            <option  *ngFor="let priority of priorityList" value="{{priority}}">{{priority}}</option>
+                            <!-- </mat-option> -->
+                        </select>
+                    <!-- </mat-form-field> -->
+                </div>
+                <div class="col-3 col-lg-2"><label class="form-label  mt-15">Assignee:</label> </div>
+                <div class="col-9 col-lg-4">
+                    <!-- <mat-form-field> -->
+                        <label>Select</label>
+                        <select formControlName="assigneeUserId">
+                            <option>None</option>
+
+                        <option  *ngFor="let user of userList" value="{{user.id}}">{{user.name}}</option>
+                            <!-- <mat-option *ngFor="let user of userList" value="{{user.id}}">{{user.name}}</mat-option> -->
+                        </select>
+                    <!-- </mat-form-field> -->
+                </div>
+                <div class="col-3 col-lg-2"><label class="form-label">Estimate:</label> </div>
+                <div class="col-9 col-lg-4 col-offset-xs-4">
+                    <input id="estimate" placeholder="Estimate ie: 6h,4d,2w" formControlName="estimate" require>
+                </div>
+            </div>
+            <div class="row mb-20">
+                <div class="col-12 col-lg-2"><label class="form-label">Attachment:</label> </div>
+                <div class="col-12 col-lg-10">
+                    <div class="attachement-box">
+                        <label class="fileContainer btn btn-primary btn-browse">
+                            Browse
+                            <input type="file" (change)="onFileChange($event)" />
+                        </label>
+                        <span *ngIf="fileUploadProgress">File upload progress: {{fileUploadProgress}} </span>
+                        <br />
+                        <div *ngFor="let file of attachedFiles">
+                            <a href="{{file.link}}" target="_blank">{{file.name}}</a>
+                            <span class="at-remove-attachment" (click)="removeFile(file)" data-toggle="tooltip"
+                                title="Remove this file">
+                                <i class="fa fa-trash"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 at-submit-btn text-right">
+                    <button class="btn btn-success btn-submit" type="submit">Submit</button>
+                </div>
+                <div class="col-6">
+                    <div class="btn btn-primary btn-cancel" (click)="onClickCancel()">Cancel</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

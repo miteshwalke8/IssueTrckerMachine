@@ -1,0 +1,142 @@
+
+<!-- APP HEADER -->
+<app-header></app-header>
+
+<div class="app-container" *ngIf="!isLoading">
+    <div class="row description-header">
+        <div class="col-md-12 col-lg-6 at-title">
+            <div class="title-box mat-elevation-z8">
+                <div class="at-ellipsis" data-toggle="tooltip" title="{{issue.title}}">Issue
+                    {{'ID-'+issue.issueNumber}}: {{issue.title}}</div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-4">
+            <button class="btn btn-primary mat-elevation-z8" (click)="openIssueModal()">Update</button>
+        </div>
+        <div class="col-lg-2 col-4">
+            <button class="btn btn-primary mat-elevation-z8" (click)="deleteIssue()">Delete</button>
+        </div>
+        <div class="col-lg-2 col-4">
+            <button class="btn btn-primary mat-elevation-z8 at-ellipsis" (click)="BackToDashboard()">Dashboard</button>
+        </div>
+    </div>
+
+    <div class="mat-elevation-z8 description-body">
+        <div class="row">
+            <div class="col-md-12 col-lg-6">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="description-label">Description:</div>
+                        <div class="description-box">
+                            <div class="description-text" [innerHtml]="issue.description"></div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="description-label">Attachments:</div>
+                        <div class="description-box">
+                            <div *ngFor="let attachment of issue.attachments">
+                                <a href="{{attachment.link}}" target="_blank">{{attachment.name}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="row">
+                            <div class="col-4 description-label">Reporter:</div>
+                            <div class="col-8">{{issue.reporterName}}</div>
+                            <div class="col-4 description-label">Assignee:</div>
+                            <div class="col-8">
+                                <span *ngIf="issue.assigneeName; else notAssigned">{{issue.assigneeName}}</span>
+                                <ng-template #notAssigned><span class="not-assigned">not assigned</span></ng-template>
+                            </div>
+                            <div class="col-4 description-label">Created:</div>
+                            <div class="col-8 at-created">
+                                <span>{{issue.createdDate | date: 'dd-MMM-yy '}}</span>
+                                <span>{{issue.createdDate | date: 'hh:mm a'}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="row">
+                            <div class="col-4 description-label">Status:</div>
+                            <div class="col-8">{{issue.status}}</div>
+                            <div class="col-4 description-label">Priority:</div>
+                            <div class="col-8">{{issue.priority}}</div>
+                            <div class="col-4 description-label">Type:</div>
+                            <div class="col-8">{{issue.issueType}}</div>
+                            <div class="col-4 description-label">Estimate:</div>
+                            <div class="col-8">{{issue.estimate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row at-watch">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="description-label">Watch:</div>
+                        <div class="btn-watch">
+                            <button class="btn btn-primary" (click)="onClickWatch()" data-toggle="tooltip" title="start/stop update notifications of this issue">
+                                {{isWatching()? 'Stop watching' : 'Watch this issue' }}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="description-label">Watchers:</div>
+                        <div *ngFor="let watcher of watchersNameList">
+                            {{watcher.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row at-comments">
+            <div class="col-md-12 col-lg-6">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="description-label">Comments:</div>
+                        <hr />
+                        <div *ngFor="let comment of issue.comments">
+                            <div class="comment-timestamp" *ngIf="comment.author"> <span
+                                    class="comment-author">{{comment.author}}</span> added comment -
+                                <span>{{comment.dateTime | date: 'dd/MM/yy, hh:mm a' }}</span>
+                                <span class="at-remove-comment" (click)="removeComment(comment)">Remove</span>
+                             </div>
+                            <p [innerHtml]="comment.message"></p>
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <app-ngx-editor [(ngModel)]="newComment"></app-ngx-editor>
+                        <div class="at-add-comment">
+                            <button type="button" class="btn btn-primary" (click)="addComment()">Add Comment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ISSUE FORM MODAL TEMPLATE -->
+<ng-template #issueTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">
+            {{'Update issue ID-' + issue.issueNumber + ' : ' + issue.title}}
+        </h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="issueModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-attachments-issue-form [isEditIssue]="true" [selectedIssue]="issue" [userList]="userList"
+            (formSubmitEvent)="saveIssue($event)" (formCloseEvent)="closeIsuueModal()">
+        </app-attachments-issue-form>
+    </div>
+</ng-template>
+
+

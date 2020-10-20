@@ -1,0 +1,18 @@
+<div class="app-header">
+    <div class="row">
+        <div class="col-5 app-title at-ellipsis">Issue Tracker</div>
+        <!-- active user name -->
+        <div class="col-5 app-user-name at-ellipsis" *ngIf="authToken">
+            <span class="user">{{activeUser}}</span>
+        </div>
+        <!-- logout -->
+        <div class="col-2 app-logout" *ngIf="authToken">
+            <a (click)="logout()">
+                <span class="logout-text">Logout</span>
+                <i class="fa fa-fw fa-power-off"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+

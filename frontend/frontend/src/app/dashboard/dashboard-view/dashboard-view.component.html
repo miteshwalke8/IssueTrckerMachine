@@ -1,0 +1,117 @@
+<!-- APP HEADER -->
+<app-header></app-header>
+
+<div class="app-container" *ngIf="!isLoading">
+    <div class="row list-filter">
+        <div class="col-lg-4 col-8 at-search">
+            <div class="seacrh-box mat-elevation-z8">
+                <input matInput (keyup)="onSelecteFilter($event.target.value)" placeholder="Search">
+                <i class="fa fa-search"></i>
+            </div>
+        </div>
+        <div class="col-lg-2 col-4 at-filter" [ngClass]="{'at-disabled': isShowMyIssues}">
+            <div class="mat-elevation-z8">
+                <mat-form-field>
+                    <mat-label>Filter</mat-label>
+                    <mat-select (selectionChange)="onSelecteFilter($event.value)">
+                        <mat-option *ngFor="let option of filterOptions" value="{{option}}">{{option}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-lg-2 col-4">
+            <button class="btn btn-primary mat-elevation-z8" (click)="openIssueModal()">Create new</button>
+        </div>
+        <div class="col-lg-2 col-4">
+            <button class="btn btn-primary mat-elevation-z8" (click)="openNotificationModal()">Notifications</button>
+        </div>
+        <div class="col-lg-2 col-4">
+            <button class="btn btn-primary mat-elevation-z8" (click)="exportAsExcelFile()">Export</button>
+        </div>
+    </div>
+    <!-- ISSUE DATA TABLE -->
+    <div class="list-container mat-elevation-z8">
+        <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.status}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="issueNumber">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Issue# </mat-header-cell>
+                <mat-cell *matCellDef="let row"> ID-{{row.issueNumber}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="createdDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.createdDate | date: 'dd-MMM-yy hh:mm a'}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="reporter">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Reporter </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.reporterName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="assignee">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Assignee </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.assigneeName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="view">
+                <mat-header-cell *matHeaderCellDef> View </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <a (click)="openIssueModal(row)">
+                        <i class="fa fa-external-link-square"></i>
+                    </a>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openIssueDescription(row.issueNumber)">
+            </mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true">
+        </mat-paginator>
+    </div>
+</div>
+
+<!-- ISSUE FORM MODAL TEMPLATE -->
+<ng-template #issueTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">
+            Create new issue
+        </h4>
+        
+        <button type="button" class="close pull-right" aria-label="Close" (click)="issueModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-attachments-issue-form [isEditIssue]="false" [userList]="userList" (formSubmitEvent)="saveIssue($event)"
+            (formCloseEvent)="closeIsuueModal()">
+        </app-attachments-issue-form>
+    </div>
+</ng-template>
+
+<!-- NOTIFICATION MODAL TEMPLATE -->
+<ng-template #notificationTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left"> Notifications </h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="notificationModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body notification-body">
+        <p>{{getnotifydata}}</p>
+  
+        <div *ngIf="getnotifydata == undefined">
+            No notifications right now
+        </div>
+    </div>
+</ng-template>

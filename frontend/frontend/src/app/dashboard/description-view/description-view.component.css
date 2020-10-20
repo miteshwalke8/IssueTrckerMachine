@@ -1,0 +1,91 @@
+
+/* .btn{
+    width: 100% !important;
+}
+
+@media screen and (max-width:991px) {
+    .at-title{
+        margin-bottom: 20px;
+    }
+}
+
+.description-header{
+    margin-bottom: 30px;
+    .at-title{
+        .title-box {
+            min-height: 38px;
+            line-height: 38px;
+            padding-left: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #444444;
+            font-size: 20px;
+          }
+      }
+ }
+
+ .description-body{
+     padding: 15px;
+     .description-box{
+        margin: 15px 0;
+        padding: 15px;
+        border: 1px solid #bbbbbb;
+       // width: 90%;
+     }
+ }
+ .not-assigned{
+     opacity: 0.3;
+ }
+
+ .at-comments{
+     margin-top: 20px;
+    .comment-timestamp{
+        opacity: 0.6;
+        font-size: 13px;
+        .comment-author{
+            color: #007bff;
+        }
+    }
+}
+
+@media screen and (min-width: 768px){
+    .at-created span{
+       display: block
+    }
+}
+
+.description-label{
+    font-weight: 700;
+    opacity: 0.5;
+}
+
+.at-add-comment{
+    border: 1px solid #ddd;
+    text-align: center;
+    button{
+        width: 35% !important;
+        @media screen and (max-width: 500px){
+                width: 55% !important;
+        }
+    }
+}
+
+.at-watch{
+    margin-top: 15px;
+    .btn-watch{
+        margin-top: 15px;
+        width: 65%;
+        @media screen and (min-width: 500px) and (max-width: 767px){
+            width: 40%;
+        }
+    }
+}
+
+.at-remove-comment{
+    margin-left: 20px;
+    cursor: pointer;
+    color: #007bff;
+}
+
+
+ */

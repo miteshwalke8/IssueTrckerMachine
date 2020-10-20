@@ -1,0 +1,38 @@
+<!-- APP HEADER -->
+<app-header></app-header>
+
+<div class="container">
+    <div *ngIf="isResetPassWord; then resetPassword else signupAndLogin"></div>
+    <!-- PASSWORD RESET -->
+    <ng-template #resetPassword>
+        <div class="row">
+            <div class="col-12">
+                <app-reset-password [userId]="userId"></app-reset-password>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #signupAndLogin>
+        <div class="row"> 
+            <div class="col-xs-12 col-sm-6 signup shadow-box-card">
+                <!-- SIGN UP -->
+                <app-signup></app-signup>
+            </div>
+            <div class="col-xs-12 col-sm-6 login">
+                <div *ngIf="isForgatePassword; then forgotPassword else login"></div>
+                <ng-template #forgotPassword>
+                    <!-- FORGOT PASSWORD -->
+                    <app-forget-password></app-forget-password>
+                </ng-template>
+                <ng-template #login>
+                    <!-- LOGIN -->
+                    <app-login></app-login>
+                </ng-template>
+               <div class="row">
+                   <div class="col-12 forgotPassword">
+                        <a (click)="isForgatePassword=!isForgatePassword">{{isForgatePassword? 'Back to Login' : 'Forgot Password?'}}</a>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </ng-template>
+</div>
